@@ -16,13 +16,14 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/api/**").permitAll()
-                .anyRequest().permitAll()
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .anyRequest().authenticated()
             )
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/h2-console/**", "/api/**")
+                .ignoringRequestMatchers("/h2-console/**", "/api/**", "/swagger-ui/**", "/v3/api-docs/**")
             )
             .headers(headers -> headers
-                .disable() // 🔄 Corrigido: desabilita todos os headers, incluindo frameOptions
+                .frameOptions().disable() // Permite iframes (necessário para o H2 Console)
             );
 
         return http.build();
