@@ -2,9 +2,7 @@ package com.example.spring_boot_api_advanced.controller;
 
 import com.example.spring_boot_api_advanced.model.User;
 import com.example.spring_boot_api_advanced.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,11 @@ public class UserController {
     @GetMapping("/users")
     public List<User> getUsers() {
         return userService.getAllUsers();
+    }
+
+    // 🔹 Adicionando método para criar usuário via API
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 }

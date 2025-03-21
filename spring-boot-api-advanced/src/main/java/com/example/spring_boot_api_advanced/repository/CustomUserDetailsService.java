@@ -5,9 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,13 +17,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // aqui você pode usar email, login ou username dependendo da sua entidade
-        Optional<com.example.spring_boot_api_advanced.model.User> optionalUser = userRepository.findByName(username);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
 
         if (optionalUser.isEmpty()) {
             throw new UsernameNotFoundException("Usuário não encontrado com nome: " + username);
         }
 
-        com.example.spring_boot_api_advanced.model.User user = optionalUser.get();
+        User user = optionalUser.get();
 
-      
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles("USER") // Ajuste conforme sua lógica
+                .build();
+    }
+}

@@ -9,30 +9,32 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17) // Definir a versão do Java
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
 repositories {
-    mavenCentral() // Repositório Maven Central para dependências
+    mavenCentral()
 }
 
 dependencies {
-    // Dependências principais do Spring Boot
-    implementation 'org.springframework.boot:spring-boot-starter-web' // Starter para aplicações web
-    implementation 'org.springframework.boot:spring-boot-starter-security' // Starter para segurança
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Starter para JPA
-    implementation 'org.hibernate.orm:hibernate-core:6.6.11.Final' // Versão do Hibernate compatível com Spring Boot 3.x
-    implementation 'com.h2database:h2' // Banco de dados H2 (para testes ou desenvolvimento local)
-    runtimeOnly 'org.postgresql:postgresql' // Driver do PostgreSQL (produção)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // Dependências para testes
-    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Starter para testes do Spring Boot
-    testImplementation 'org.mockito:mockito-core' // Garantir que o Mockito esteja disponível
-    testImplementation 'org.junit.jupiter:junit-jupiter-api' // API do JUnit 5
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine' // Motor do JUnit 5
+    implementation 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+
+    // Opcional: Lombok
+    // compileOnly 'org.projectlombok:lombok'
+    // annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
-    useJUnitPlatform() // Usar a plataforma JUnit 5 para execução dos testes
+    useJUnitPlatform()
 }

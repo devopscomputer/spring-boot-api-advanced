@@ -14,9 +14,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/api/**").permitAll()
                 .anyRequest().permitAll()
             )
-            .csrf(csrf -> csrf.disable()); // Nova forma correta de desativar CSRF
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/h2-console/**", "/api/**")
+            )
+            .headers(headers -> headers
+                .disable() // 🔄 Corrigido: desabilita todos os headers, incluindo frameOptions
+            );
 
         return http.build();
     }
