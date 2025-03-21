@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example.spring_boot_api_advanced'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Starter para aplicações web
+    implementation 'org.springframework.boot:spring-boot-starter-security' // Starter para segurança
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Starter para JPA
+    implementation 'org.hibernate.orm:hibernate-core:6.6.11.Final' // Usando uma versão compatível com Spring Boot 3.x
+    implementation 'com.h2database:h2' // Banco de dados em memória H2
+    runtimeOnly 'org.postgresql:postgresql' // Driver do PostgreSQL
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Starter para testes
+}
+
+tasks.named('test') {
+    useJUnitPlatform() // Usar a plataforma JUnit para testes
+}
