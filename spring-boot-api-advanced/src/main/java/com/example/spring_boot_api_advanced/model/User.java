@@ -1,24 +1,19 @@
 package com.example.spring_boot_api_advanced.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Entity
-@Table(name = "app_user") // Renomeando a tabela para evitar conflito
+@Entity // Necessário para que a classe seja reconhecida como uma entidade JPA
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String email;
 
-    // Construtor padrão
+    @Id // Anotação para a chave primária
+    private Long id;  // Adicionando um campo ID para ser a chave primária
+    
+    private String name;
+
+    // Construtor necessário para frameworks como JPA e Jackson
     public User() {}
 
-    // Construtor com nome
     public User(String name) {
         this.name = name;
     }
@@ -38,13 +33,5 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

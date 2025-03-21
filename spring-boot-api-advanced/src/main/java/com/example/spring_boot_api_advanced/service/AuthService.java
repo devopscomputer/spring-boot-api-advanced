@@ -4,5 +4,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-    // Lógica de autenticação
+
+    public boolean authenticate(String username, String password) {
+        // Simula validação (fictícia)
+        return "admin".equals(username) && "123".equals(password);
+    }
 }

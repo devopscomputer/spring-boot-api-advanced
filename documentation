@@ -1,0 +1,41 @@
+O projeto segue uma estrutura típica de um aplicativo Spring Boot com Gradle. Aqui estão alguns dos principais arquivos e suas funções:
+
+Arquivos de Configuração e Build
+build.gradle – Arquivo de configuração do Gradle para gerenciar dependências e compilar o projeto.
+settings.gradle – Define configurações do projeto no Gradle.
+gradlew e gradlew.bat – Scripts para executar o Gradle sem necessidade de instalação manual.
+.gitignore – Define quais arquivos devem ser ignorados pelo Git.
+.gitattributes – Define atributos para arquivos no Git.
+Diretórios e Componentes Principais
+O código-fonte geralmente fica em src/main/java, enquanto testes são armazenados em src/test/java. Vou agora aprofundar a análise para identificar as classes principais dentro desses diretórios. ​​
+
+Análise da Estrutura do Projeto
+O projeto segue uma arquitetura organizada para um sistema Spring Boot avançado, com autenticação e controle de usuários. Aqui está um resumo dos principais componentes:
+
+1. Configuração e Inicialização
+ApiApplication.java – Classe principal que inicia o Spring Boot.
+application.properties – Configurações da aplicação (banco de dados, autenticação, etc.).
+2. Configuração de Segurança
+SecurityConfig.java – Configuração de segurança com Spring Security.
+WebConfig.java – Configurações adicionais para requisições e permissões.
+3. Controladores (Camada de API)
+UserController.java – Gerencia endpoints relacionados aos usuários (login, registro, etc.).
+4. DTOs (Transferência de Dados)
+AuthRequestDto.java – Objeto para autenticação do usuário.
+UserDto.java – Representação simplificada do usuário para transferência de dados.
+5. Exceções e Tratamento de Erros
+CustomException.java – Classe para exceções personalizadas.
+GlobalExceptionHandler.java – Captura e trata erros globalmente.
+6. Modelos (Camada de Dados)
+Role.java – Enumeração de papéis de usuários (ADMIN, USER, etc.).
+User.java – Modelo que representa um usuário no banco de dados.
+7. Repositórios (Acesso ao Banco de Dados)
+CustomUserDetailsService.java – Implementação de autenticação personalizada.
+UserRepository.java – Interface para manipular usuários no banco de dados.
+8. Serviços (Regras de Negócio)
+AuthService.java – Gerencia autenticação e geração de tokens.
+UserService.java – Lógica de negócio relacionada a usuários.
+9. Testes
+ApiApplicationTests.java – Testes gerais da aplicação.
+AuthServiceTests.java – Testes unitários para autenticação.
+UserControllerTests.java – Testes dos endpoints do usuário.

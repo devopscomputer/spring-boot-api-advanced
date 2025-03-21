@@ -9,24 +9,30 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(17) // Definir a versão do Java
     }
 }
 
 repositories {
-    mavenCentral()
+    mavenCentral() // Repositório Maven Central para dependências
 }
 
 dependencies {
+    // Dependências principais do Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-web' // Starter para aplicações web
     implementation 'org.springframework.boot:spring-boot-starter-security' // Starter para segurança
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Starter para JPA
-    implementation 'org.hibernate.orm:hibernate-core:6.6.11.Final' // Usando uma versão compatível com Spring Boot 3.x
-    implementation 'com.h2database:h2' // Banco de dados em memória H2
-    runtimeOnly 'org.postgresql:postgresql' // Driver do PostgreSQL
-    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Starter para testes
+    implementation 'org.hibernate.orm:hibernate-core:6.6.11.Final' // Versão do Hibernate compatível com Spring Boot 3.x
+    implementation 'com.h2database:h2' // Banco de dados H2 (para testes ou desenvolvimento local)
+    runtimeOnly 'org.postgresql:postgresql' // Driver do PostgreSQL (produção)
+
+    // Dependências para testes
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Starter para testes do Spring Boot
+    testImplementation 'org.mockito:mockito-core' // Garantir que o Mockito esteja disponível
+    testImplementation 'org.junit.jupiter:junit-jupiter-api' // API do JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine' // Motor do JUnit 5
 }
 
 tasks.named('test') {
-    useJUnitPlatform() // Usar a plataforma JUnit para testes
+    useJUnitPlatform() // Usar a plataforma JUnit 5 para execução dos testes
 }
